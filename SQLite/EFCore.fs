@@ -5,10 +5,8 @@ open Microsoft.EntityFrameworkCore
 
 // TODO: Try from DTO type
 // TODO: Try with list and options
-// type MyTypeDTO = { Question: string; Answer: int }
-
 [<CLIMutable>]
-type MyTypeEntity =
+type MyType =
     { Id: Nullable<int64>
       Question: string
       Answer: int }
@@ -25,7 +23,7 @@ type MyContext =
     //     42
 
     [<DefaultValue>]
-    val mutable myData: DbSet<MyTypeEntity>
+    val mutable myData: DbSet<MyType>
 
     member x.MyData
         with get () = x.myData
@@ -37,7 +35,7 @@ let makeSqliteContext dbFilename () =
     optionsBuilder.UseSqlite(connectionStr) |> ignore
     new MyContext(optionsBuilder.Options)
 
-let saveMyData (context: MyContext) (entity: MyTypeEntity) =
+let saveMyData (context: MyContext) (entity: MyType) =
     async {
         context.MyData.AddAsync(entity).AsTask()
         |> Async.AwaitTask
