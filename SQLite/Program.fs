@@ -3,5 +3,6 @@
 [<EntryPoint>]
 let main argv =
     // DirectSQLite.demo
-    DapperSQLite.demo
+    // DapperSQLite.demo
+    EFCore.demo |> ignore
     0 
