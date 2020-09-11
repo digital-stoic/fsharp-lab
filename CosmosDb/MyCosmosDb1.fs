@@ -1,25 +1,45 @@
 module MyCosmosDb1
 
-// open Azure.Cosmos
+// FIXME: Fsharp.Configuration not compatible with .Net Core
+// FIXME FsConfig requires manual installation of TypeShape
+open System.IO
+open Microsoft.Extensions.Configuration
+open FsConfig
 open FSharp.CosmosDb
 open FSharp.Control
 
-// let endPointUri = "https://localhost:80801/"
+type Config =
+    { [<DefaultValue("C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==")>]
+      DbConnectionString: string }
 
-// let primaryKey =
-// "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+let appSettingsFilename = "appsettings.json"
 
-// let conn =
-// new CosmosClient(endPointUri, primaryKey, {  })
+let Config =
+    let configurationRoot =
+        ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(appSettingsFilename).Build()
 
-// "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
-let connStr =
-    "AccountEndpoint=https://lab.documents.azure.com:443/;AccountKey=ahEunnlFBzESd8xej6fCL3atNryobvGUuoCkdaIXAAz0oORTOA6oL6RIdUFrJhJSrHH6si1ipdlok8nbFnUfVA==;"
+    let appConfig =
+        AppConfig(configurationRoot).Get<Config>(fun _ s -> s)
 
-type MyData = { Question: string; Answer: int }
+    match appConfig with
+    | Ok config -> config
+    | Error error ->
+        match error with
+        | NotFound envVarName -> failwithf "Environment variable %s not found" envVarName
+        | BadValue (envVarName, value) -> failwithf "Environment variable %s has invalid value: %s" envVarName value
+        | NotSupported msg -> failwith msg
+
+// TODO: UUID for Id
+// TODO: Check if field names are case sensitive
+[<CLIMutable>]
+type MyData =
+    { id: string
+      Question: string
+      Answer: int
+      key: int }
 
 let insert<'T> data =
-    connStr
+    Config.DbConnectionString
     |> Cosmos.fromConnectionString
     |> Cosmos.database "lab-db"
     |> Cosmos.container "lab-container"
@@ -27,7 +47,7 @@ let insert<'T> data =
     |> Cosmos.execAsync
 
 let find<'T> () =
-    connStr
+    Config.DbConnectionString
     |> Cosmos.fromConnectionString
     |> Cosmos.database "lab-db"
     |> Cosmos.container "lab-container"
@@ -35,18 +55,25 @@ let find<'T> () =
     |> Cosmos.execAsync<'T>
 
 let data1 =
-    [ { Question = "Universe?"; Answer = 42 } ]
+    [ { id = "5"
+        Question = "Universe?"
+        Answer = 42
+        key = 0 } ]
 
 let run (data: MyData list) =
     async {
-        // let newData = insert<MyData> data
-        let dat = find<MyData> ()
-        do! dat |> AsyncSeq.iter (fun d -> printfn "%A" d)
+        let newData = insert<MyData> data
+        // let dat = find<MyData> ()
+        // do! dat |> AsyncSeq.iter (fun d -> printfn "%A" d)
         return 0
     }
     |> Async.RunSynchronously
 
 let demo =
-    run data1 |> ignore
+    // run data1 |> ignore
+    insert<MyData> data1
+    |> AsyncSeq.toListAsync
+    |> Async.RunSynchronously
+    |> ignore
     printfn "F# Lab Comos DB"
     0 |> ignore
