@@ -8,7 +8,10 @@ open Giraffe.ModelBinding
 open FSharp.Control.Tasks.V2.ContextInsensitive
 open Microsoft.AspNetCore.Http
 
-type MyDTO = { question: string; answer: int }
+type MyDTO =
+    { question: string
+      answer: int
+      options: bool option }
 
 let browser =
     pipeline {
@@ -50,7 +53,10 @@ let addPayload (obj: MyDTO): HttpHandler =
             return! Successful.ok (json {| obj with payload = dto |}) next ctx
         }
 
-let obj1 = { question = "universe"; answer = 42 }
+let obj1 =
+    { question = "universe"
+      answer = 42
+      options = None }
 
 let apiRouter =
     router {
