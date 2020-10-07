@@ -26,14 +26,16 @@ let dotNetExecProject projectFiles command =
     for projectFile in projectFiles do
         let projectDir = Path.getDirectory projectFile
 
-        let options (opts: DotNet.Options) =
-            DotNet.Options.withWorkingDirectory projectDir opts
-
-        DotNet.exec options command "" |> ignore
+        Command.RawCommand("dotnet", Arguments.OfArgs command)
+        |> CreateProcess.fromCommand
+        |> CreateProcess.withWorkingDirectory projectDir
+        |> CreateProcess.ensureExitCode
+        |> Proc.run
+        |> ignore
 
 let cleanProject (projectFiles: IGlobbingPattern) logMessage _ =
     Trace.log logMessage
-    dotNetExecProject projectFiles "clean"
+    dotNetExecProject projectFiles [ "clean" ]
 
 let cleanFake fakeDirs _ =
     Trace.log "Cleaning Fake..."
@@ -47,7 +49,7 @@ let cleanTest =
 
 let buildProject (projectFiles: IGlobbingPattern) logMessage _ =
     Trace.log logMessage
-    dotNetExecProject projectFiles "build"
+    dotNetExecProject projectFiles [ "build" ]
 
 let buildApp =
     buildProject appProjectFiles "Building App..."
@@ -71,7 +73,7 @@ Target.create "BuildAll" (fun _ -> Trace.log "Building all...")
 
 Target.create "Test" (fun _ ->
     Trace.log "Testing..."
-    dotNetExecProject testProjectFiles "run --summary")
+    dotNetExecProject testProjectFiles [ "run"; "--summary" ])
 
 Target.create "Deploy" (fun _ -> Trace.log "Deploying app...")
 
