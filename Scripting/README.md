@@ -14,3 +14,9 @@
 ```
 # dotnet fsi script-command.fsx
 ```
+
+```
+# cd single-executable
+# dotnet restore
+# dotnet publish -c release
+```
