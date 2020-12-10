@@ -5,7 +5,6 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>single_executable</RootNamespace>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <PublishReadyToRun>true</PublishReadyToRun>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>

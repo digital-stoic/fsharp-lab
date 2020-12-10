@@ -1,18 +1,52 @@
+// FIXME: File paths for Windows
 #r "paket:
 nuget Fake.Core.Target
-nuget Fake.IO.System"
+nuget Fake.IO.FileSystem
+"
 
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
 open Fake.Core.TargetOperators
-// open Fake.IO.File
+open System.Text.RegularExpressions
 
-let warpFile = "warp-packer"
+//==============================================================================
+// Configuration
+//==============================================================================
 
-// TODO: Portable platform for Warp
-let warpUrl =
-    "https://github.com/dgiagio/warp/releases/download/v0.3.0/linux-x64.warp-packer"
+module getEnv =
+    let platform =
+        Environment.environVarOrDefault "PLATFORM" "linux-x64"
+
+    let warpFile =
+        Environment.environVarOrDefault "WARP_FILE" "warp-packer"
+
+    let warpUrl =
+        Environment.environVarOrDefault "WARP_URL" "https://github.com/dgiagio/warp/releases/download/v0.3.0/"
+        + platform
+        + ".warp-packer"
+
+    let exeFile =
+        let projectDir =
+            List.last <| String.split '/' __SOURCE_DIRECTORY__
+
+        Environment.environVarOrDefault "EXE_FILE" projectDir
+
+    let publishDir =
+        let publishDir =
+            __SOURCE_DIRECTORY__
+            + "/bin/release/net5.0/"
+            + platform
+            + "/publish"
+
+        Environment.environVarOrDefault "PUBLISH_DIR" publishDir
+
+    let deployDir =
+        Environment.environVarOrDefault "DEPLOY_DIR" "/usr/local/bin"
+
+//==============================================================================
+// Helpers
+//==============================================================================
 
 let checkCommandExists cmd =
     Command.RawCommand("which", Arguments.OfArgs([ cmd ]))
@@ -24,48 +58,83 @@ let runCommand cmd =
     |> Proc.run
     |> ignore
 
-let dotnetBuild =
-    Command.RawCommand("dotnet", Arguments.OfArgs([ "build"; "-c"; "release" ]))
+//==============================================================================
+// Clean
+//==============================================================================
+
+let clean _ =
+    List.map Fake.IO.Shell.rm_rf [ "bin"; "obj"; ".fake" ]
+    |> ignore
+
+//==============================================================================
+// Build
+//==============================================================================
+
+let dotnetBuild command config =
+    Command.RawCommand
+        ("dotnet",
+         Arguments.OfArgs
+             ([ command
+                "-r"
+                getEnv.platform
+                "-c"
+                config ]))
+
+let dotnetBuildDebug = dotnetBuild "build" "Debug"
+
+let buildDebug _ = runCommand dotnetBuildDebug
+
+let dotnetBuildOptimized = dotnetBuild "publish" "Release"
 
 let installWarp =
-    if Fake.IO.File.exists <| "bin/" + warpFile
-    then Command.RawCommand("true", Arguments.Empty)
-    else Command.RawCommand("curl", Arguments.OfArgs([ "-Lo"; "bin/" + warpFile; warpUrl ]))
+    if Fake.IO.File.exists <| "bin/" + getEnv.warpFile then
+        Command.RawCommand("true", Arguments.Empty)
+    else
+        Command.RawCommand
+            ("curl",
+             Arguments.OfArgs
+                 ([ "-Lo"
+                    "bin/" + getEnv.warpFile
+                    getEnv.warpUrl ]))
 
 let runWarp =
-    let platform = "linux-x64"
-
-    let publishPath =
-        "/mnt/c/data/dev/fsharp-lab/Scripting/single-executable/bin/release/net5.0/linux-x64/publish"
-
-    let exeFile = "single-executable"
-    let outputFile = "bin/" + exeFile
     Command.RawCommand
-        ("bin/" + warpFile,
+        ("bin/" + getEnv.warpFile,
          Arguments.OfArgs
              ([ "--arch"
-                platform
+                getEnv.platform
                 "--input_dir"
-                publishPath
+                getEnv.publishDir
                 "--exec"
-                exeFile
+                getEnv.exeFile
                 "--output"
-                outputFile ]))
+                "bin/" + getEnv.exeFile ]))
 
-let build _ =
-    runCommand dotnetBuild
+let buildOptimized _ =
+    runCommand dotnetBuildOptimized
     runCommand (checkCommandExists "curl")
     runCommand installWarp
     runCommand runWarp
 
-Target.create "Clean" (fun _ -> Trace.log "Cleaning...")
+//==============================================================================
+//Deploy
+//==============================================================================
 
-Target.create "BuildDebug" build
+let deploy _ =
+    Fake.IO.Shell.copyFile getEnv.deployDir ("bin/" + getEnv.exeFile)
 
-Target.create "BuildOptimized" build
+//==============================================================================
+// Targets
+//==============================================================================
 
-Target.create "Deploy" (fun _ -> Trace.log "Deploying...")
+Target.create "Clean" clean
 
-"Clean" ==> "BuildOptimized" ==> "Deploy"
+Target.create "BuildDebug" buildDebug
+
+Target.create "BuildOptimized" buildOptimized
+
+Target.create "Deploy" deploy
+
+"BuildOptimized" ==> "Deploy"
 
 Target.runOrDefault "Deploy"
