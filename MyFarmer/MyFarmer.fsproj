@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Lab.Common.fs" />
+    <Compile Include="Lab.Vm.fs" />
+    <Compile Include="Lab.Vnet.fs" />
     <Compile Include="Template1.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
