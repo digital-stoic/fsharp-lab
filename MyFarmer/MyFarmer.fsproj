@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="Lab.Common.fs" />
+    <Compile Include="Lab.WebApp.fs" />
     <Compile Include="Lab.Vm.fs" />
     <Compile Include="Lab.Vnet.fs" />
     <Compile Include="Template1.fs" />
