@@ -21,13 +21,13 @@ let makeVirtualNetwork vnetName vnetAddresses subnets =
 
     }
 
-// let makeVmLite vmName userName =
-//     vm {
-//         name vmName
-//         username userName
-//         vm_size Basic_A1
-//         operating_system CommonImages
-//     }
+let makeVmLite (vmName: string) userName =
+    vm {
+        name vmName
+        username userName
+        vm_size Vm.VMSize.Basic_A1
+        operating_system Vm.UbuntuServer_1804LTS
+    }
 
 let executeDeployment resourceGroupName deployment =
     lazy

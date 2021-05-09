@@ -6,13 +6,97 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- <Compile Include="Farmer/Result.fs" />
+    <Compile Include="Farmer/Types.fs" />
+    <Compile Include="Farmer/Common.fs" />
+    <Compile Include="Farmer/DiagnosticLogCategories.fs" />
+    <Compile Include="Farmer/ArmBuilder.fs" />
+    <Compile Include="Farmer/Writer.fs" />
+    <Compile Include="Farmer/Deploy.fs" />
+    <Compile Include="Farmer/Arm/DiagnosticSetting.fs" />
+    <Compile Include="Farmer/Arm/ManagedIdentity.fs" />
+    <Compile Include="Farmer/Arm/LogAnalytics.fs" />
+    <Compile Include="Farmer/Arm/Storage.fs" />
+    <Compile Include="Farmer/Arm/Cache.fs" />
+    <Compile Include="Farmer/Arm/Cdn.fs" />
+    <Compile Include="Farmer/Arm/CognitiveServices.fs" />
+    <Compile Include="Farmer/Arm/CommunicationServices.fs" />
+    <Compile Include="Farmer/Arm/BingSearch.fs" />
+    <Compile Include="Farmer/Arm/Dns.fs" />
+    <Compile Include="Farmer/Arm/Network.fs" />
+    <Compile Include="Farmer/Arm/Bastion.fs" />
+    <Compile Include="Farmer/Arm/Compute.fs" />
+    <Compile Include="Farmer/Arm/ContainerInstance.fs" />
+    <Compile Include="Farmer/Arm/ContainerRegistry.fs" />
+    <Compile Include="Farmer/Arm/ContainerService.fs" />
+    <Compile Include="Farmer/Arm/DataLakeStore.fs" />
+    <Compile Include="Farmer/Arm/DBforPostgreSQL.fs" />
+    <Compile Include="Farmer/Arm/Devices.fs" />
+    <Compile Include="Farmer/Arm/DocumentDb.fs" />
+    <Compile Include="Farmer/Arm/EventHub.fs" />
+    <Compile Include="Farmer/Arm/Insights.fs" />
+    <Compile Include="Farmer/Arm/KeyVault.fs" />
+    <Compile Include="Farmer/Arm/RoleAssignment.fs" />
+    <Compile Include="Farmer/Arm/Search.fs" />
+    <Compile Include="Farmer/Arm/ServiceBus.fs" />
+    <Compile Include="Farmer/Arm/Sql.fs" />
+    <Compile Include="Farmer/Arm/Web.fs" />
+    <Compile Include="Farmer/Arm/Maps.fs" />
+    <Compile Include="Farmer/Arm/SignalR.fs" />
+    <Compile Include="Farmer/Arm/EventGrid.fs" />
+    <Compile Include="Farmer/Arm/NetworkSecurityGroup.fs" />
+    <Compile Include="Farmer/Arm/DeploymentScript.fs" />
+    <Compile Include="Farmer/Arm/Databricks.fs" />
+    <Compile Include="Farmer/Arm/VirtualWan.fs" />
+    <Compile Include="Farmer/IdentityExtensions.fs" />
+    <Compile Include="Farmer/Builders/Builders.LogAnalytics.fs" />
+    <Compile Include="Farmer/Builders/Builders.Helpers.fs" />
+    <Compile Include="Farmer/Builders/Builders.UserAssignedIdentity.fs" />
+    <Compile Include="Farmer/Builders/Builders.PostgreSQL.fs" />
+    <Compile Include="Farmer/Builders/Builders.Cdn.fs" />
+    <Compile Include="Farmer/Builders/Builders.ContainerGroups.fs" />
+    <Compile Include="Farmer/Builders/Builders.ContainerService.fs" />
+    <Compile Include="Farmer/Builders/Builders.DataLake.fs" />
+    <Compile Include="Farmer/Builders/Builders.DeploymentScript.fs" />
+    <Compile Include="Farmer/Builders/Builders.Dns.fs" />
+    <Compile Include="Farmer/Builders/Builders.Storage.fs" />
+    <Compile Include="Farmer/Builders/Builders.Redis.fs" />
+    <Compile Include="Farmer/Builders/Builders.KeyVault.fs" />
+    <Compile Include="Farmer/Builders/Builders.Bastion.fs" />
+    <Compile Include="Farmer/Builders/Builders.VirtualNetwork.fs" />
+    <Compile Include="Farmer/Builders/Builders.Vm.fs" />
+    <Compile Include="Farmer/Builders/Builders.ServicePlan.fs" />
+    <Compile Include="Farmer/Builders/Builders.AppInsights.fs" />
+    <Compile Include="Farmer/Builders/Builders.WebApp.fs" />
+    <Compile Include="Farmer/Builders/Builders.Functions.fs" />
+    <Compile Include="Farmer/Builders/Builders.Sql.fs" />
+    <Compile Include="Farmer/Builders/Builders.Search.fs" />
+    <Compile Include="Farmer/Builders/Builders.Cosmos.fs" />
+    <Compile Include="Farmer/Builders/Builders.EventHub.fs" />
+    <Compile Include="Farmer/Builders/Builders.ExpressRoute.fs" />
+    <Compile Include="Farmer/Builders/Builders.CognitiveServices.fs" />
+    <Compile Include="Farmer/Builders/Builders.CommunicationServices.fs" />
+    <Compile Include="Farmer/Builders/Builders.BingSearch.fs" />
+    <Compile Include="Farmer/Builders/Builders.ContainerRegistry.fs" />
+    <Compile Include="Farmer/Builders/Builders.ServiceBus.fs" />
+    <Compile Include="Farmer/Builders/Builders.IotHub.fs" />
+    <Compile Include="Farmer/Builders/Builders.Maps.fs" />
+    <Compile Include="Farmer/Builders/Builders.SignalR.fs" />
+    <Compile Include="Farmer/Builders/Builders.VirtualNetworkGateway.fs" />
+    <Compile Include="Farmer/Builders/Builders.EventGrid.fs" />
+    <Compile Include="Farmer/Builders/Builders.StaticWebApp.fs" />
+    <Compile Include="Farmer/Builders/Builders.NetworkSecurityGroup.fs" />
+    <Compile Include="Farmer/Builders/Builders.Databricks.fs" />
+    <Compile Include="Farmer/Builders\Builders.DiagnosticSetting.fs" />
+    <Compile Include="Farmer/Builders/Builders.VirtualWan.fs" /> -->
+
     <Compile Include="Lab.Common.fs" />
     <Compile Include="Lab1.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Farmer" Version="1.4.0" />
+    <PackageReference Include="Farmer" Version="1.5.1" />
   </ItemGroup>
 
 </Project>
