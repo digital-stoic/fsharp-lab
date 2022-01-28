@@ -1,4 +1,4 @@
-module Sheet
+module ToXLS
 
 open System.IO
 open NPOI.SS.UserModel
@@ -23,11 +23,10 @@ let C (content: string) (style: string) =
 
     (c, CellStyle style)
 
-let range1: CellRange = [ C "42" "LT"; C "=$A$1 + 1" "" ]
-let range2: CellRange = [ C "43" "LT"; C "=$A$1 + 2" "" ]
-let ranges: list<CellRange> = [ range1; range2 ]
+let cellAddress (row, column) =
+    C $"=INDIRECT(ADDRESS({row}, {column}))"
 
-let fileName = @"out/test.xlsx"
+let A = cellAddress
 
 let initSheet (workbook: XSSFWorkbook) sheetName =
     workbook.CreateSheet(sheetName) |> ignore
@@ -42,7 +41,7 @@ let initCellsOfRow (workbook: XSSFWorkbook) sheetName rowNumber range =
     let row =
         workbook.GetSheet(sheetName).GetRow(rowNumber)
 
-    List.indexed ranges
+    List.indexed range
     |> List.iter (fun (i, _) -> row.CreateCell(i) |> ignore)
 
 let initCells (workbook: XSSFWorkbook) sheetName ranges =
@@ -60,7 +59,7 @@ let rangeToXLS (row: IRow) (range: CellRange) =
     List.indexed range
     |> List.iter (fun (column, cell) -> cellToXLS row column cell)
 
-let toXLS (workbook: XSSFWorkbook) sheetName (ranges: list<CellRange>) =
+let sheetToXLS (workbook: XSSFWorkbook) sheetName (ranges: list<CellRange>) =
     initSheet workbook sheetName
     initRows workbook sheetName ranges
     initCells workbook sheetName ranges
@@ -70,9 +69,20 @@ let toXLS (workbook: XSSFWorkbook) sheetName (ranges: list<CellRange>) =
         let row = workbook.GetSheet(sheetName).GetRow(i)
         rangeToXLS row range)
 
-let createWorkbook fileName =
-    let workbook = new XSSFWorkbook()
-    toXLS workbook "Main" ranges
-    workbook.Write(new FileStream(fileName, FileMode.Create))
+let autoSizeColumns (workbook: XSSFWorkbook) sheetName ranges =
+    // TODO: get from ranges
+    let columnMax = 42
 
-let run = createWorkbook fileName
+    for c in 0 .. columnMax do
+        workbook.GetSheet(sheetName).AutoSizeColumn(c)
+
+
+let createWorkbook fileName sheetRanges =
+    let workbook = new XSSFWorkbook()
+
+    sheetRanges
+    |> List.iter (fun (sheetName, ranges) ->
+        sheetToXLS workbook sheetName ranges
+        autoSizeColumns workbook sheetName ranges)
+
+    workbook.Write(new FileStream(fileName, FileMode.Create))

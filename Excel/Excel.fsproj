@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Tmp.fs" />
-    <Compile Include="Sheet.fs" />
+    <Compile Include="ToXLS.fs" />
+    <Compile Include="Scenarios.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

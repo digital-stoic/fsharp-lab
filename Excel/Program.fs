@@ -1,5 +1,4 @@
 [<EntryPoint>]
 let main argv =
-    Sheet.run
-    // Tmp.run |> ignore
+    Scenarios.run
     0
