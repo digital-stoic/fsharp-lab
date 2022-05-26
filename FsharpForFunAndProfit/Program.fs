@@ -2,5 +2,11 @@
 
 [<EntryPoint>]
 let main argv =
-    printfn "Hello from F#"
+    // OrdersUsingFold1.run ()
+    // OrdersUsingFold2.run ()
+    // StringMonoid.run ()
+    // MappingDifferentStructure.run ()
+    // MonoidHomorphism.run ()
+    // WordCountTest.run ()
+    FrequentWordTest.run ()
     0

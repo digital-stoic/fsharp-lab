@@ -31,3 +31,5 @@ TODO
 ## others
 
 TODO
+
+- [ ] [Formatted text using printf](https://fsharpforfunandprofit.com/posts/printf/)
