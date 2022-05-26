@@ -1,6 +1,18 @@
 // From https://fsharpforfunandprofit.com/posts/monoids-without-tears/
 namespace Monoids
 
+type Demo =
+    | OrdersUsingFold1
+    | OrdersUsingFold2
+    | StringMonoid
+    | MappingDifferentStructure
+    | MonoidHomorphism
+    | WordCountTest
+    | FrequentWordTest
+    | MonoidChar
+    | Validation
+    | MonoidalValidation
+
 module OrdersUsingFold1 =
     type OrderLine =
         { ProductCode: string
@@ -320,3 +332,119 @@ module FrequentWordTest =
         |> List.map mostFrequenWord
         |> List.reduce (+)
         |> printfn "using map, the most frequent word is %s"
+
+module MonoidChar =
+    type MChar = MChar of System.Char list
+
+    let toMChar ch = MChar [ ch ]
+
+    let addChar (MChar ch1) (MChar ch2) = MChar(ch1 @ ch2)
+
+    let (++) = addChar
+
+    let toString (MChar cs) = new System.String(List.toArray cs)
+
+    let run () =
+        let a = 'a' |> toMChar
+        let b = 'b' |> toMChar
+        let c = a ++ b
+        printfn "=> MonoidChar"
+        c |> toString |> printfn "a + b = %s"
+
+        [ ' ' .. 'z' ]
+        |> List.filter System.Char.IsPunctuation
+        |> List.map toMChar
+        |> List.reduce addChar
+        |> toString
+        |> printfn "punctuation chars = %s"
+
+module Validation =
+    type ValidationResult =
+        | Success
+        | Failure of string
+
+    let validateBadWord (badWord: string) (name: string) =
+        if name.Contains(badWord) then
+            Failure $"string contains a bad word: {badWord}"
+        else
+            Success
+
+    let validateLength maxLength name =
+        if String.length name > maxLength then
+            Failure $"string is too long: {name}"
+        else
+            Success
+
+    // NOTE: How to combine 2 validation results?
+    let run () = printfn "=> Validation"
+
+module MonoidalValidation =
+    type ValidationResult =
+        | Success
+        | Failure of string list
+
+    let fail str = [ str ]
+
+    let validateBadWord (badWord: string) (name: string) =
+        if name.Contains(badWord) then
+            Failure
+            <| fail $"string contains a bad word: {badWord}"
+        else
+            Success
+
+    let validateLength maxLength name =
+        if String.length name > maxLength then
+            Failure <| fail $"string is too long"
+        else
+            Success
+
+    let add r1 r2 =
+        match r1, r2 with
+        | Success, Success -> Success
+        | Failure f1, Success -> Failure f1
+        | Success, Failure f2 -> Failure f2
+        | Failure f1, Failure f2 -> Failure(f1 @ f2)
+
+    let zero = Success
+
+    let test1 =
+        let result1 = Success
+        let result2 = Success
+        add result1 result2
+
+    let test2 =
+        let result1 = Success
+        let result2 = Failure <| fail "string is too long"
+        add result1 result2
+
+    let test3 =
+        let result1 = Failure <| fail "string is too long"
+        let result2 = Failure <| fail "string is null or empty"
+        add result1 result2
+
+    let test4 =
+        let validationResults str =
+            [ validateLength 10
+              validateBadWord "monad"
+              validateBadWord "cobol" ]
+            |> List.map (fun validate -> validate str)
+
+        "cobol has native support for monads"
+        |> validationResults
+        |> List.reduce add
+
+    let test5 =
+        let validationResults str =
+            [] |> List.map (fun validate -> validate str)
+
+        "cobol has native support for monads"
+        |> validationResults
+        |> List.fold add zero
+
+    let run () =
+        printfn "=> Validation"
+        printfn $"Test1 result: {test1}"
+        printfn $"Test2 result: {test2}"
+        printfn $"Test3 result: {test3}"
+        printfn $"Test4 result: {test4}"
+        printfn $"Test5 result: {test5}"
