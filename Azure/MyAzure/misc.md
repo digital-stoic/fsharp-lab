@@ -27,6 +27,8 @@ az login
 az login --use-device-code
 az account list
 az account show
+az group create --name rg-lab --location eastus
+az group list
 ```
 
 ### PowerShell
