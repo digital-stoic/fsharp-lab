@@ -20,5 +20,12 @@
     <Compile Include="SimpleHttpTrigger2.fs" />
     <Compile Include="UnitConverterDomain.fs" />
     <Compile Include="UnitConverterApi.fs" />
+    <Compile Include="Order/Types.fs" />
+    <Compile Include="Order/Data.fs" />
+    <Compile Include="Order/Place.Domain.fs" />
+    <Compile Include="Order/Ship.Domain.fs" />
+    <Compile Include="Order/Place.Application.fs" />
+    <Compile Include="Order/Ship.Application.fs" />
+    <Compile Include="Order/Api.fs" />
   </ItemGroup>
 </Project>
