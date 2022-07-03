@@ -16,4 +16,8 @@ Target.create "Deploy.Clean" Deploy.clean
 
 Target.create "Deploy" Deploy.run
 
+Target.create "Full.Clean" <| (fun _ -> Trace.log "Full clean...")
+
+"Build.Clean" ==> "Deploy.Clean" ==> "Full.Clean"
+
 Target.runOrDefault "Deploy"
