@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E58ED3E8-6844-496D-817D-DD68C36CEF3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Administration", "Administration", "{49820AD2-B21E-4CC7-9FEA-0014E83CE612}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyCompany.Meeting.Module.Administration.Domain", "Modules\Administration\Domain\MyCompany.Meeting.Module.Administration.Domain.fsproj", "{80B7B3DD-502B-486A-8759-DC3C3277727B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8CA51231-0FA4-423F-9CB2-7E1B740B148D}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyCompany.Meeting.Common.Domain", "Common\Domain\MyCompany.Meeting.Common.Domain.fsproj", "{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80B7B3DD-502B-486A-8759-DC3C3277727B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B7B3DD-502B-486A-8759-DC3C3277727B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B7B3DD-502B-486A-8759-DC3C3277727B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B7B3DD-502B-486A-8759-DC3C3277727B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49820AD2-B21E-4CC7-9FEA-0014E83CE612} = {E58ED3E8-6844-496D-817D-DD68C36CEF3B}
+		{80B7B3DD-502B-486A-8759-DC3C3277727B} = {49820AD2-B21E-4CC7-9FEA-0014E83CE612}
+		{8AECDBB5-AFEC-4F58-8102-D1F490F0DEA1} = {8CA51231-0FA4-423F-9CB2-7E1B740B148D}
+	EndGlobalSection
+EndGlobal

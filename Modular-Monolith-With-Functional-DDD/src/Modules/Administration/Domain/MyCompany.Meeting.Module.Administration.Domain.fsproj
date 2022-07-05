@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Member.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Domain\MyCompany.Meeting.Common.Domain.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
+  </ItemGroup>
+
+</Project>
