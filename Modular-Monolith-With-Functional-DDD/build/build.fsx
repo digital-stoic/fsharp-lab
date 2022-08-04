@@ -19,7 +19,10 @@ let appProjectFiles =
     !!(projectRootDir + "/Api/**/*.fsproj")
     ++ (projectRootDir + "/Modules/**/*.fsproj")
 
-let testProjectFiles = !!(projectRootDir + "/Tests/**/*.fsproj")
+let testProjectFiles =
+    !!(projectRootDir + "/Common/**/Tests/**/*.fsproj")
+    ++ (projectRootDir + "/Modules/**/Tests/**/*.fsproj")
+    ++ (projectRootDir + "/Tests/**/*.fsproj")
 
 let dotNetExecProject projectFiles command =
     for projectFile in projectFiles do
