@@ -1,6 +1,4 @@
 namespace MyCompany.Meeting.Module.Administration.Domain
 
-type Event.MemberCreated = { MemberId: Id }
-
-// module Event.MemberCreated =
-//     { MemberId : Id }
+open MyCompany.Meeting.Module.Administration.Domain.Member
+type Event.MemberCreated = MemberCreated of Member

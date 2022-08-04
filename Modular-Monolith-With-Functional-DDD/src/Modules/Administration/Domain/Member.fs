@@ -5,6 +5,9 @@ open FsToolkit.ErrorHandling
 open MyCompany.Meeting.Common.Domain
 open MyCompany.Meeting.Common.Domain.SimpleType
 
+// module M =
+//     let x = String50 "x"
+
 // Entity, Aggregate Root
 type Member =
     { Id: Id
@@ -14,6 +17,7 @@ type Member =
       LastName: String50
       CreateDate: DateTime }
 
+// TODO: No create for Admin module (DTO != Repository)
 module Member =
     // TODO: Move to DTO?
     type CreateArgs =
