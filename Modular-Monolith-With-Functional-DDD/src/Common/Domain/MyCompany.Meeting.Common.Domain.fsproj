@@ -17,4 +17,9 @@
     <PackageReference Include="FsToolkit.ErrorHandling" Version="2.13.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Application\MyCompany.Meeting.Common.Application.Dummy.fsproj" />
+    <ProjectReference Include="..\Architecture\MyCompany.Meeting.Common.Architecture.fsproj" />
+  </ItemGroup>
+
 </Project>
