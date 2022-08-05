@@ -9,6 +9,7 @@
     <Compile Include="SimpleType.fs" />
     <Compile Include="ConstrainedType.fs" />
     <Compile Include="String50.fs" />
+    <Compile Include="String200.fs" />
     <Compile Include="Entity.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
