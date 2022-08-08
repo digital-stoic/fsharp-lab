@@ -29,7 +29,7 @@ let mileYardsToDecimalYards (mileYards: MileYards_1) : float =
 // NOTE: Using a module to associate functions with a type
 // NOTE: Private type constructor
 // NOTE: Pattern matching in parameter declarations
-// NOTE: Use private operators to make the code less wordy. See https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/operator-overloading
+// NOTE: Use private operators to make the code less wordy. See https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/operator-overloading0
 module MileYards =
     type MileYards = private MileYards of wholeMiles: int * yards: int
 

@@ -85,6 +85,14 @@ let herOrder =
       Billing = "9 Gravity road\n80885"
       Delivery = Download }
 
+// NOTE: How to work with nullable types
+let showHeartRate (rate: Nullable<int>) =
+    rate
+    |> Option.ofNullable
+    |> Option.map (fun r -> r.ToString())
+    |> Option.defaultValue "N/A"
+
+
 let run =
     printfn $"Starting {description}..."
     // printfn "%s" myOrder.Delivery
@@ -97,3 +105,6 @@ let run =
     [ myOrder_2; hisOrder_2; herOrder ]
     |> deliveryLabels
     |> printfn "%A"
+
+    showHeartRate (Nullable()) |> printfn "%A"
+    showHeartRate (Nullable 42) |> printfn "%A"
