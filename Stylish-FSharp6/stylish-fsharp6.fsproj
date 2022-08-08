@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Include="Ch2.fs" />
+    <Compile Include="Ch3.fs" />
+    <Compile Include="Ch4.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
