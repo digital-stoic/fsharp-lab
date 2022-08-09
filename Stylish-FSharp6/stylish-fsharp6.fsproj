@@ -12,7 +12,15 @@
     <Compile Include="Ch4.fs" />
     <Compile Include="Ch5.fs" />
     <Compile Include="Ch6.fs" />
+    <Compile Include="Ch7.fs" />
+    <Compile Include="Ch8.fs" />
+    <Compile Include="Ch9.fs" />
+    <Compile Include="Ch10.fs" />
     <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="fsharp.data" Version="4.2.9" />
   </ItemGroup>
 
 </Project>
