@@ -17,10 +17,12 @@
     <Compile Include="Ch9.fs" />
     <!-- <Compile Include="Ch10.fs" /> -->
     <Compile Include="Ch11.fs" />
-    <Compile Include="Program.fs" />
+    <Compile Include="Ch12.fs" />
+    <!-- <Compile Include="Program.fs" /> -->
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="benchmarkdotnet" Version="0.13.1" />
     <PackageReference Include="fsharp.data" Version="4.2.9" />
   </ItemGroup>
 

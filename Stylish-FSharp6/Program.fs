@@ -1,4 +1,4 @@
-﻿[<EntryPoint>]
+﻿// [<EntryPoint>]
 let main _ =
     // Ch2.run
     // Ch3.run
@@ -8,5 +8,6 @@ let main _ =
     // Ch7.run
     // Ch10.run
     // Ch10.run |> Async.RunSynchronously
-    Ch11.run
+    // Ch11.run
+    Ch12.run
     0
