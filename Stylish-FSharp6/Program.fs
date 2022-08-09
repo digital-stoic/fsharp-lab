@@ -7,5 +7,6 @@ let main _ =
     // Ch6.run
     // Ch7.run
     // Ch10.run
-    Ch10.run |> Async.RunSynchronously
+    // Ch10.run |> Async.RunSynchronously
+    Ch11.run
     0

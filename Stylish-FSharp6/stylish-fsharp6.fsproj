@@ -15,7 +15,8 @@
     <Compile Include="Ch7.fs" />
     <Compile Include="Ch8.fs" />
     <Compile Include="Ch9.fs" />
-    <Compile Include="Ch10.fs" />
+    <!-- <Compile Include="Ch10.fs" /> -->
+    <Compile Include="Ch11.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
