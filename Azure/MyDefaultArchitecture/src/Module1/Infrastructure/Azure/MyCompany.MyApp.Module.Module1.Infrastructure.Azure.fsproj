@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
+    <PackageReference Include="Thoth.Json.Net" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="host.json">
@@ -20,5 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Domain\MyCompany.MyApp.Common.Domain.fsproj" />
+    <ProjectReference Include="..\..\..\Common\Application\MyCompany.MyApp.Common.Application.fsproj" />
   </ItemGroup>
 </Project>
