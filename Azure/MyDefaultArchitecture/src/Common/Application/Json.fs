@@ -7,7 +7,7 @@ module Answer =
     let decoder: Decoder<Dto.Answer> =
         Decode.object (fun get -> { value = get.Required.Field "value" Decode.int })
 
-    let deserialize (json: JsonValue) = Decode.fromValue "$" decoder json
+    let deserialize jsonStr = Decode.fromString decoder jsonStr
 
     let encoder (answer: Dto.Answer) =
         Encode.object [ "value", Encode.int (answer.value) ]

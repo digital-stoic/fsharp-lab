@@ -1,7 +1,7 @@
 open System.Diagnostics
 open Expecto
 open MyCompany.MyApp.Common.Test.Helper
-open MyCompany.MyApp.Module.Module1
+open MyCompany.MyApp.Module1
 
 [<Tests>]
 let tests =

@@ -1,10 +1,12 @@
-namespace MyCompany.MyApp.Module.Module1.Test.Integration
+namespace MyCompany.MyApp.Module1.Test.Integration
 
 open Expecto
 open Expecto.Flip.Expect
 open Hopac
 open HttpFs.Client
 open System.Diagnostics
+open FsToolkit.ErrorHandling
+open MyCompany.MyApp.Common
 
 module Local =
     let infrastructureAzureFolder = "../../../Infrastructure/Azure"
@@ -63,5 +65,11 @@ module Local =
             "Function1"
             [ testTask "Get value 42" {
                   let! response = requestFunction1 |> Async.StartAsTask
-                  response |> equal "OK" """{"value":42}"""
+                  //   response |> equal "OK" """{"value":42}"""
+                  response
+                  |> Application.Json.Answer.deserialize
+                  |> Result.bind Application.Dto.Answer.toDomain
+                  |> Result.defaultValue Domain.Answer.wrong
+                  |> Domain.Answer.value
+                  |> equal "Answer value is 42" 42
               } ]

@@ -1,4 +1,4 @@
-module MyCompany.MyApp.Module.Module1.Infrastructure.Azure
+module MyCompany.MyApp.Module1.Infrastructure.Azure
 
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Azure.WebJobs
