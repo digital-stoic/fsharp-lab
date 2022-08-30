@@ -1,7 +1,5 @@
 module MyCompany.MyApp.Module.Module1.Infrastructure.Azure
 
-open System
-open System.IO
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Azure.WebJobs
 open Microsoft.Azure.WebJobs.Extensions.Http
