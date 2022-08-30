@@ -3,9 +3,6 @@ open Expecto
 open MyCompany.MyApp.Common.Test.Helper
 open MyCompany.MyApp.Module.Module1
 
-let setup = Test.Integration.Local.asyncSetup
-let waitSetupReady = Test.Integration.Local.asyncAwaitSetupReady
-
 [<Tests>]
 let tests =
     testList "MyCompany.MyApp.Module.Module1.Test.Integration.Local"
@@ -24,6 +21,9 @@ let asyncTest (setup: Async<Process>) (waitSetupReady) argv =
 
 [<EntryPoint>]
 let main argv =
+    let setup = Test.Integration.Local.asyncSetup
+    let waitSetupReady = Test.Integration.Local.asyncAwaitSetupReady
+
     asyncTest setup waitSetupReady argv
     |> Async.RunSynchronously
     |> ignore
