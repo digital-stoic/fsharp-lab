@@ -12,6 +12,11 @@ let equalR message expected actual =
     | Ok a -> equal message expected a
     | Error e -> isTrue "Force fail" false
 
+let notEqualR message expected actual =
+    match actual with
+    | Ok a -> isTrue "Force fail" false
+    | Error e -> equal message expected e
+
 // equal for constrained types
 let equalRV typeValue message expected actual =
     match actual with
