@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "MyCompany.MyApp.Warehouse.Infrastructure.Azure": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7275"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33990,
+      "useSSL": false
+    }
+  }
+}
