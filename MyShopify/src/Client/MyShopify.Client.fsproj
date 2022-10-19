@@ -15,6 +15,7 @@
     <PackageReference Include="FsConfig" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="ShopifySharp" Version="5.18.5" />
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
   </ItemGroup>
 
 </Project>
