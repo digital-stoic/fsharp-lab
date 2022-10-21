@@ -2,8 +2,14 @@
 
 . ./.env
 
+if [ "$DEBUG" = "1" ]; then
+	DEBUG_OPT="-v"
+else
+	DEBUG_OPT=""
+fi
+
 curl \
-	-vv \
+	$DEBUG_OPT \
 	-X POST \
 	-F 'key1=value1' \
 	-H 'x-functions-key: ${FUNCTION_KEY_WEBHOOK1}' \
