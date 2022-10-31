@@ -5,7 +5,7 @@ open Types
 
 let leadDecoder: Decoder<Lead> =
     Decode.object (fun get ->
-        { id = get.Required.Field "id" Decode.int
+        { id = get.Required.Field "id" Decode.int |> string
           title = get.Required.Field "title" Decode.string
           pipeline = get.Required.Field "pipeline" Decode.string
           step = get.Required.Field "step" Decode.string

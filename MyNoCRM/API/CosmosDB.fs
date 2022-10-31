@@ -54,16 +54,23 @@ let asyncRun =
         let jsonLeads =
             asyncRequest secrets.nocrmApiKey
             |> Async.RunSynchronously
-        //printfn $"{jsonLeads}"
+
         let leads = tryDecodeLeads jsonLeads
-        printfn $"{leads}"
         // TODO: use 'use'?
         let client = new CosmosClient(settings.accountEndPoint, secrets.cosmosKey)
         let database = createDatabase client settings.databaseName
 
         let container =
             createContainer database settings.containerName settings.partitionKey
-        //let lead = upsertitem container leadtest1 leadtest1.id
+        // TODO: bulk insert?
+        // See https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/tutorial-dotnet-bulk-import
+        //let lead = upsertItem container leads[0] leads[0].id
+        let results =
+            leads
+            |> List.map (fun l -> upsertItem container l l.id)
+
+        printfn $"{results}"
+
 
         printfn "Ending CosmosDB..."
 

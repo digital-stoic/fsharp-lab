@@ -3,7 +3,7 @@
 open Types
 
 let leadTest1 =
-    { id = 21860157
+    { id = "21860157"
       title = "Cask Provider 1"
       pipeline = "Default"
       step = "Incoming"

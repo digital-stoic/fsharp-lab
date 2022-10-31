@@ -1,7 +1,7 @@
 ﻿module Types
 
 type Lead =
-    { id: int // TODO: id
+    { id: string // TODO: id
       title: string
       pipeline: string // TODO: union type
       step: string // TODO: union type
