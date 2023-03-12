@@ -3,15 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.Warehouse.Domain", "src\Warehouse\Domain\MyCompany.MyApp.Warehouse.Domain.fsproj", "{E8C26276-0B55-43FF-9121-A26DD116A945}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{27D1F98C-79C0-46B7-A3A9-4C18929D3C10}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.Warehouse.Test.Unit", "src\Warehouse\Test\Unit\MyCompany.MyApp.Warehouse.Test.Unit.fsproj", "{958D60C5-3E7C-4930-B57D-634A95EF3F5F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{BDEA03B1-2CA5-4CD1-B2E6-C2021DCABB1C}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.Deploy", "deploy\MyCompany.MyApp.Deploy.fsproj", "{F3589DBA-F3F6-4FDE-906B-E112E76B7F27}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyCompany.MyApp", "MyCompany.MyApp", "{2F76A2C8-7503-4BFE-BD17-5D99D987F9C3}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.Warehouse.Infrastructure.Azure", "src\Warehouse\Infrastructure\Azure\MyCompany.MyApp.Warehouse.Infrastructure.Azure.fsproj", "{87F817ED-59F5-4C10-AA54-96BD3F8F8976}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyOrder", "MyOrder", "{5C26A0B7-8589-49A6-BA08-A2365079255E}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.Warehouse.Test.Infrastructure.Integration.Local", "src\Warehouse\Test\Integration\Local\MyCompany.MyApp.Warehouse.Test.Infrastructure.Integration.Local.fsproj", "{165070DC-ABA5-4F18-9E40-B2656F7C3D92}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{6CCD31DA-C9B9-47CA-B81C-15E0C899EC26}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.MyOrder.Application", "src\MyOrder\Application\MyCompany.MyApp.MyOrder.Application.fsproj", "{91076F41-E002-4A1E-B8BD-0503485DC96A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1975C2DD-29E9-49D0-95C0-8C88048EE7D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{C138D3E1-96EA-4108-801E-1C954281EDE2}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyCompany.MyApp.MyOrder.Test.Unit", "src\MyOrder\Test\Unit\MyCompany.MyApp.MyOrder.Test.Unit.fsproj", "{DBE50287-F27D-4A82-8D38-77C952A7AB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,29 +31,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E8C26276-0B55-43FF-9121-A26DD116A945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8C26276-0B55-43FF-9121-A26DD116A945}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8C26276-0B55-43FF-9121-A26DD116A945}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8C26276-0B55-43FF-9121-A26DD116A945}.Release|Any CPU.Build.0 = Release|Any CPU
-		{958D60C5-3E7C-4930-B57D-634A95EF3F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{958D60C5-3E7C-4930-B57D-634A95EF3F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{958D60C5-3E7C-4930-B57D-634A95EF3F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{958D60C5-3E7C-4930-B57D-634A95EF3F5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3589DBA-F3F6-4FDE-906B-E112E76B7F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3589DBA-F3F6-4FDE-906B-E112E76B7F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3589DBA-F3F6-4FDE-906B-E112E76B7F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3589DBA-F3F6-4FDE-906B-E112E76B7F27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87F817ED-59F5-4C10-AA54-96BD3F8F8976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87F817ED-59F5-4C10-AA54-96BD3F8F8976}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87F817ED-59F5-4C10-AA54-96BD3F8F8976}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87F817ED-59F5-4C10-AA54-96BD3F8F8976}.Release|Any CPU.Build.0 = Release|Any CPU
-		{165070DC-ABA5-4F18-9E40-B2656F7C3D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{165070DC-ABA5-4F18-9E40-B2656F7C3D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{165070DC-ABA5-4F18-9E40-B2656F7C3D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{165070DC-ABA5-4F18-9E40-B2656F7C3D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91076F41-E002-4A1E-B8BD-0503485DC96A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91076F41-E002-4A1E-B8BD-0503485DC96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91076F41-E002-4A1E-B8BD-0503485DC96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91076F41-E002-4A1E-B8BD-0503485DC96A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE50287-F27D-4A82-8D38-77C952A7AB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE50287-F27D-4A82-8D38-77C952A7AB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE50287-F27D-4A82-8D38-77C952A7AB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE50287-F27D-4A82-8D38-77C952A7AB25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27D1F98C-79C0-46B7-A3A9-4C18929D3C10} = {2F76A2C8-7503-4BFE-BD17-5D99D987F9C3}
+		{BDEA03B1-2CA5-4CD1-B2E6-C2021DCABB1C} = {2F76A2C8-7503-4BFE-BD17-5D99D987F9C3}
+		{5C26A0B7-8589-49A6-BA08-A2365079255E} = {27D1F98C-79C0-46B7-A3A9-4C18929D3C10}
+		{6CCD31DA-C9B9-47CA-B81C-15E0C899EC26} = {5C26A0B7-8589-49A6-BA08-A2365079255E}
+		{91076F41-E002-4A1E-B8BD-0503485DC96A} = {6CCD31DA-C9B9-47CA-B81C-15E0C899EC26}
+		{1975C2DD-29E9-49D0-95C0-8C88048EE7D6} = {5C26A0B7-8589-49A6-BA08-A2365079255E}
+		{C138D3E1-96EA-4108-801E-1C954281EDE2} = {1975C2DD-29E9-49D0-95C0-8C88048EE7D6}
+		{DBE50287-F27D-4A82-8D38-77C952A7AB25} = {C138D3E1-96EA-4108-801E-1C954281EDE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1ACB8BF9-8B7A-48D1-B192-F6CC5F75F69F}
