@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MyCompany.MyApp.MyOrder.Application": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

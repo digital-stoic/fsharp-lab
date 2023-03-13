@@ -1,15 +1,14 @@
-﻿module MyCompany.MyOrder.Test.Unit.Application
-//namespace MyCompany.MyOrder.Test.Unit
+﻿namespace MyCompany.MyOrder.Test.Unit
 
 open NUnit.Framework
 open Expecto.Flip.Expect
 
-//module Application =
-[<SetUp>]
-let Setup () = ()
+module Application =
+    [<SetUp>]
+    let Setup () = ()
 
-[<Test>]
-let ultimateAnswerIs42 =
-    let expected = 42
-    let actual = 42
-    expected |> equal "Answer value is 42" actual
+    [<Test>]
+    let ultimateAnswerIs42 () =
+        let expected = 42
+        let actual = 42
+        expected |> equal "Answer value is 42" actual
