@@ -6,6 +6,8 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
     <DockerfileTag>my-company.my-app/my-order.application:0.1</DockerfileTag>
+    <!-- FIXME: Need to pass ARG in Dockerfile -->
+    <DockerfileBuildArguments>--build-arg MODULE=MyCompany.MyApp.MyOrder.Application</DockerfileBuildArguments>
   </PropertyGroup>
 
   <ItemGroup>
